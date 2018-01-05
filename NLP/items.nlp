@@ -1,0 +1,16 @@
+###############################################
+# FILE: items.pat
+# SUBJ: comment
+# AUTH: David de Hilster
+# CREATED: 13/Dec/16 10:11:56
+# MODIFIED:
+###############################################
+
+@NODES _ROOT
+
+@RULES
+_item <-
+    _itemOpen					### (1)
+    _xWILD [fails=(_itemClose)]	### (2)
+    _itemClose					### (3)
+    @@

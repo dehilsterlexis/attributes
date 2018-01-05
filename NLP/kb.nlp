@@ -1,0 +1,38 @@
+###############################################
+# FILE: kb.pat
+# SUBJ: comment
+# AUTH: David de Hilster
+# CREATED: 12/Dec/16 17:55:30
+# MODIFIED:
+###############################################
+
+@DECL
+
+addCategory(L("category"),L("categoryid")) {
+	L("con") = findconcept(G("categories"),L("category"));
+	if (!L("con")) {
+		L("con") = makeconcept(G("categories"),L("category"));
+		addnumval(L("con"),"count",1);
+	} else {
+		L("count") = getnumval(findvals(L("con"), "count"));
+		"dupes.txt" << L("categoryid") << "-" << L("category") << " " << L("count") << "\n";
+		replaceval(L("con"),"count",L("count")+1);
+	}
+	
+	if (!attrwithval(L("con"),"catid",L("categoryid"))) {
+		addstrval(L("con"),"catid",L("categoryid"));
+	}
+}
+
+@@DECL
+
+@CODE
+
+G("categories") = findconcept(findroot(),"categories");
+if (!G("categories"))
+	G("categories") = makeconcept(findroot(),"categories");
+
+rmchildren(G("categories"));
+
+@@CODE
+

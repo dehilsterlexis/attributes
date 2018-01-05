@@ -1,0 +1,16 @@
+﻿// QUERIES
+QUERY: Dump <= Details, Person, Address, PersonLiens;
+
+////Show raw results of each Entity
+// or you can do it like this:
+// QUERY: Dump1 <= Details; //Show raw results of Details Entity
+// QUERY: Dump2 <= Person; //Show raw results of Person Entity
+// QUERY: Dump3 <= Address; //Show raw results of Address Entity
+// QUERY: Dump4 <= PersonLiens; //Show raw results of PersonLiens Entity
+
+QUERY: Debtors <= PersonLiens{CorePerson.UID, CorePerson.fname, CorePerson.lname,
+																			LienDetails.filing_type_desc, LienDetails.amount,
+																			LienDetails.eviction, LienDetails.orig_filing_date,
+																			LienDetails.filing_status};
+																			
+QUERY:

@@ -1,0 +1,2 @@
+﻿Person := ENTITY(FLAT(UID));
+USE Module.Attr(FLAT, Person);

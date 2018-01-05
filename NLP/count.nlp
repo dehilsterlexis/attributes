@@ -1,0 +1,21 @@
+###############################################
+# FILE: count.pat
+# SUBJ: comment
+# AUTH: David de Hilster
+# CREATED: 17/Aug/16 16:10:58
+# MODIFIED:
+###############################################
+
+@NODES _ROOT
+
+@POST
+G("count") = G("count") + 1;
+single();
+
+@RULES
+_item <-
+    \<		### (1)
+    \/		### (2)
+    item	### (3)
+    \>		### (4)
+    @@

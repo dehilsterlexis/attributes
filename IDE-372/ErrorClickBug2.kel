@@ -1,0 +1,6 @@
+﻿Person := ENTITY(FLAT(UID));
+
+ERROR ERROR
+
+USE SomeModule.SomeAttr(FLAT, Person); 
+

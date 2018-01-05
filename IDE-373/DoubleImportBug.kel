@@ -1,0 +1,2 @@
+﻿IMPORT DoubleImportBug2;
+QUERY: Test <= Person;

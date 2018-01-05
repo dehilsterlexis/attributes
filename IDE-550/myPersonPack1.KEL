@@ -1,0 +1,5 @@
+﻿IMPORT Graph; // with this import statement the ECL crashed when save the Graph kel file.
+PACKAGE myPersonPack1;
+    Person: => NextAge := Person.Age+1;
+    SHELL: myPersonPack1 <= Person{NextAge};
+END;

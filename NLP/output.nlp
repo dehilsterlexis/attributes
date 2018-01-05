@@ -1,0 +1,29 @@
+###############################################
+# FILE: output.pat
+# SUBJ: comment
+# AUTH: David de Hilster
+# CREATED: 12/Dec/16 11:31:51
+# MODIFIED:
+###############################################
+
+@CODE
+sortchilds(G("categories"));
+
+L("cat") = down(G("categories"));
+
+while (L("cat")) {
+	L("count") = getnumval(findvals(L("cat"), "count"));
+	if (L("count") > 1) {
+		L("vals") = findvals(L("cat"), "catid");
+		while (L("vals")) {
+			L("num") = getstrval(L("vals"));
+			"output.txt" << L("num") << "-";
+			L("vals") = nextval(L("vals"));
+		}
+		"output.txt" << conceptname(L("cat"));
+		"output.txt" << "\n";
+	}
+	L("cat") = next(L("cat"));
+}
+
+@@CODE

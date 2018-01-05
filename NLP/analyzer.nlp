@@ -1,0 +1,8 @@
+﻿# hello
+tokenize	nil	# Gen:   Convert input to token list.
+nlp	kb	# comment
+nlp	tags	# comment
+nlp	items	# comment
+nlp	count	# comment
+nlp	names	# comment
+nlp	output	# comment

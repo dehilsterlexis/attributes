@@ -1,0 +1,44 @@
+###############################################
+# FILE: names.pat
+# SUBJ: comment
+# AUTH: David de Hilster
+# CREATED: 12/Dec/16 11:29:38
+# MODIFIED:
+###############################################
+
+@NODES _item
+
+@POST
+X("catid") = N("$text",2);
+
+@RULES
+_xNIL <-
+    _categoryidOpen [s]					### (1)
+    _xWILD [s fails=(_categoryidClose)]	### (2)
+    _categoryidClose					### (3)
+    @@
+
+@POST
+"names.txt" << N("$text",2) << "\n";
+addCategory(N("$text",2),X("catid"));
+X("name") = N("$text",2);
+
+@RULES
+_xNIL <-
+    _nameOpen [s]					### (1)
+    _xWILD [s fails=(_nameClose)]	### (2)
+    _nameClose						### (3)
+    @@
+
+@PRE
+<2,2> lengthr(2,100);
+	
+@POST
+"tooltip.txt" << N("$text",2) << "\n";
+
+@RULES
+_xNIL <-
+    _tooltipOpen [s]					### (1)
+    _xWILD [s fails=(_tooltipClose)]	### (2)
+    _tooltipClose						### (3)
+    @@

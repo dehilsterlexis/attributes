@@ -1,0 +1,3 @@
+﻿Person := ENTITY(FLAT(UID));
+USE Module.Attr(FLAT, Person);
+QUERY: Test <= Person;

@@ -1,0 +1,6 @@
+﻿#OPTION(wrappers) 
+
+Person := ENTITY(FLAT(UID=id, fname, lname, INTEGER rawage=age, INTEGER income), MODEL(*));
+USE Modules.PersonSet.Big.File(FLAT, Person);
+
+SHELL: TestShell <= Person{UID,fname,lname};

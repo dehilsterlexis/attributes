@@ -1,0 +1,4 @@
+﻿IMPORT ErrorClickBug2;
+QUERY: Test <= Person;     
+
+Testing.

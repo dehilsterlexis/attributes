@@ -1,0 +1,5 @@
+﻿Person := ENTITY(FLAT(UID,name, INTEGER Age=NULL(0) age), MODEL(*));
+Relatives := ASSOCIATION(FLAT(Person who,Person whoto,STRING code));
+USE PackageTest.Files.Person(FLAT,Person);
+IMPORT myPersonPack1;
+QUERY: Test1 <= Person;

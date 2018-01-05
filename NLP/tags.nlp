@@ -1,0 +1,62 @@
+###############################################
+# FILE: tags.pat
+# SUBJ: comment
+# AUTH: David de Hilster
+# CREATED: 13/Dec/16 10:14:48
+# MODIFIED:
+###############################################
+
+@NODES _ROOT
+
+@RULES
+_itemOpen <-
+    \<		### (1)
+    item	### (2)
+    \>		### (3)
+    @@
+	
+_itemClose <-
+    \<		### (1)
+    \/		### (2)
+    item	### (3)
+    \>		### (4)
+    @@
+	
+_categoryidOpen <-
+    \<			### (1)
+    categoryid	### (2)
+    \>			### (3)
+    @@
+	
+_categoryidClose <-
+    \<			### (1)
+    \/			### (2)
+    categoryid	### (3)
+    \>			### (4)
+    @@	
+
+_nameOpen <-
+    \<		### (1)
+    name	### (2)
+    \>		### (3)
+    @@
+	
+_nameClose <-
+    \<		### (1)
+    \/		### (2)
+    name	### (3)
+    \>		### (4)
+    @@
+
+_tooltipOpen <-
+    \<		### (1)
+    tooltip	### (2)
+    \>		### (3)
+    @@
+	
+_tooltipClose <-
+    \<		### (1)
+    \/		### (2)
+    tooltip	### (3)
+    \>		### (4)
+    @@

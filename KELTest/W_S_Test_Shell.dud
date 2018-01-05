@@ -1,0 +1,47 @@
+﻿//HPCC Systems KEL Compiler Version 0.9.0-1
+NAME W_S_Test_Shell;
+LABEL "Plugin wrapper for KEL SHELL KELTest.TestShell";
+VERSION "1";
+AUTHOR "kelcc";
+CATEGORY APPEND;
+DESCRIPTION "A plugin wrapper for KEL SHELL KELTest.TestShell";
+PERMISSIONS
+  VIEW:PUBLIC;
+  EDIT:PRIVATE;
+  RUN:PUBLIC;
+END
+INPUTS
+    STRING ShellPrefix:LABEL("Append Column Prefix"),DEFAULT("shellname_"),DESCRIPTION("All fields appended from the shell will be prefixed with this prefix");
+    DATASET dsInput:MAPBYNAME
+        FIELD IDField:LABEL("UID to join on"),DESCRIPTION("The UID field to use when joining the shell to the dataset");
+    END
+END
+OUTPUTS
+    DATASET dsOutput(dsInput):PREFIX(INPUTS.ShellPrefix), WUID, APPEND
+      STRING _fname_;
+      UNSIGNED1 ___fname__flags;
+      STRING _lname_;
+      UNSIGNED1 ___lname__flags;
+    END
+END
+GENERATES INLINE
+IMPORT KEL;
+SHARED keyList:=DEDUP(PROJECT(%dsInput%, TRANSFORM({KEL.typ.uid UID}, SELF.UID := (KEL.typ.uid) LEFT.%IDField%)),RECORD,ALL);
+IMPORT KELTest;
+SHARED lookupRecords:=KELTest.RSH_Test_Shell(keyList);
+SHARED l_joined:=RECORD
+      RECORDOF(%dsInput%);
+      STRING %ShellPrefix%_fname_;
+      UNSIGNED1 %ShellPrefix%___fname__flags;
+      STRING %ShellPrefix%_lname_;
+      UNSIGNED1 %ShellPrefix%___lname__flags;
+END;
+IMPORT KEL;
+%^edsOutput%:=JOIN(%dsInput%,lookupRecords.Result,((KEL.typ.uid)LEFT.%IDField%)=RIGHT.UID, TRANSFORM(l_joined,
+      SELF.%ShellPrefix%_fname_:=RIGHT._fname_;
+      SELF.%ShellPrefix%___fname__flags:=RIGHT.___fname__flags;
+      SELF.%ShellPrefix%_lname_:=RIGHT._lname_;
+      SELF.%ShellPrefix%___lname__flags:=RIGHT.___lname__flags;
+      SELF:=LEFT;));
+ENDGENERATES
+

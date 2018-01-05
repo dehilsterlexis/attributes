@@ -1,0 +1,20 @@
+﻿###############################################
+# FILE: tooltip.pat
+# SUBJ: comment
+# AUTH: David de Hilster
+# CREATED: 30/Nov/16 14:34:29
+# MODIFIED:
+###############################################
+
+@PATH _ROOT _category _LINE
+
+@POST
+X("name") = N("$text",1);
+
+@RULES
+_xNIL <-
+    _xALPHA				            ### (1)
+    \(										            ### (2)
+    _xWILD [fail=(\))]	### (3)
+    \)					                      ### (4)
+    @@
